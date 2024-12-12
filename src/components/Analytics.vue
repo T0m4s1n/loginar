@@ -654,7 +654,7 @@ onUnmounted(() => {
   background: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 1rem;
-  width: 100%;
+  width: 90%;
 }
 
 .metrics-container {
@@ -667,97 +667,16 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 2rem;
-  height: calc(100vh - 13rem); /* Adjusted for metrics panel */
+  height: calc(100vh - 13rem);
 }
 
-/* Product specific styles */
-.product-thumbnail,
-.product-emoji {
-  width: 40px;
-  height: 40px;
-  border-radius: 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(134, 81, 231, 0.1);
-  overflow: hidden;
-}
-
-.product-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.product-emoji {
-  font-size: 1.5rem;
-}
-
-/* Responsive styles */
-@media (max-width: 1400px) {
-  .metrics-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .metric-card.total {
-    grid-column: span 3;
-  }
-}
-
-@media (max-width: 1024px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-  
-  .map-container {
-    height: 400px;
-    order: -1;
-  }
-  
-  .metrics-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .metric-card.total {
-    grid-column: span 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .route-optimization {
-    padding: 1rem;
-  }
-
-  .metrics-container {
-    grid-template-columns: 1fr;
-  }
-
-  .metric-card.total {
-    grid-column: span 1;
-  }
-
-  .selection-panel {
-    padding: 1rem;
-  }
-}
-
-.route-optimization {
-  padding: 2rem;
-}
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 2rem;
-  height: calc(100vh - 4rem);
-}
-
+/* Map and Container Styles */
 .map-container {
   height: 100%;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 #route-map {
@@ -765,6 +684,7 @@ onUnmounted(() => {
   width: 100%;
 }
 
+/* Selection Panel Styles */
 .selection-panel {
   background: var(--bg-secondary);
   padding: 1.5rem;
@@ -776,6 +696,7 @@ onUnmounted(() => {
   overflow-y: auto;
 }
 
+/* Products List Styles */
 .products-list {
   display: grid;
   gap: 1rem;
@@ -804,21 +725,39 @@ onUnmounted(() => {
   gap: 1rem;
 }
 
-.product-thumbnail {
+/* Product Thumbnail Styles */
+.product-thumbnail,
+.product-emoji {
   width: 40px;
   height: 40px;
   border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(134, 81, 231, 0.1);
+  overflow: hidden;
+}
+
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+.product-emoji {
+  font-size: 1.5rem;
+}
+
+/* Button Styles */
 .add-product-btn,
-.remove-product-btn {
+.remove-product-btn,
+.search-btn {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family:"Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .add-product-btn {
@@ -826,20 +765,23 @@ onUnmounted(() => {
   color: white;
 }
 
-.remove-product-btn {
-  background: rgba(255, 71, 87, 0.1);
-  color: rgb(255, 71, 87);
-}
-
 .add-product-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+.remove-product-btn {
+  background: rgba(255, 71, 87, 0.1);
+  color: rgb(255, 71, 87);
+}
+
+/* Selected Products Styles */
 .selected-products {
   background: var(--bg-primary);
   padding: 1rem;
   border-radius: 0.5rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .selected-product-item {
@@ -850,13 +792,25 @@ onUnmounted(() => {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Search Styles */
+.address-search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+}
+
 .search-input {
   display: flex;
   gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .search-input input {
   flex: 1;
+  min-width: 0;
   padding: 0.75rem;
   border: 2px solid rgba(134, 81, 231, 0.2);
   border-radius: 0.5rem;
@@ -868,9 +822,6 @@ onUnmounted(() => {
   padding: 0.75rem;
   background: rgb(134, 81, 231);
   color: white;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -881,51 +832,23 @@ onUnmounted(() => {
   background: var(--bg-primary);
   border-radius: 0.5rem;
   overflow: hidden;
+  max-width: 100%;
+  word-break: break-word;
 }
 
 .search-result-item {
   padding: 0.75rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .search-result-item:hover {
   background: rgba(134, 81, 231, 0.1);
 }
 
-.user-location-marker {
-  width: 20px;
-  height: 20px;
-}
-
-.user-marker-inner {
-  width: 20px;
-  height: 20px;
-  background: rgb(134, 81, 231);
-  border: 3px solid white;
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px rgb(134, 81, 231);
-}
-
-.spinner-small {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-left-color: white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@media (max-width: 1024px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .selection-panel {
-    order: -1;
-  }
-}
-
+/* Metrics Panel Styles */
 .metrics-panel {
   background: var(--bg-secondary);
   padding: 1.5rem;
@@ -941,11 +864,6 @@ onUnmounted(() => {
   font-size: 1.5rem;
   color: var(--text-primary);
   margin-bottom: 1rem;
-}
-
-.metrics-container {
-  display: grid;
-  gap: 1rem;
 }
 
 .metric-card {
@@ -977,6 +895,7 @@ onUnmounted(() => {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-primary);
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .metric-card.total {
@@ -989,37 +908,7 @@ onUnmounted(() => {
   color: white;
 }
 
-.optimization-tips {
-  background: var(--bg-primary);
-  padding: 1.5rem;
-  border-radius: 0.8rem;
-}
-
-.optimization-tips h3 {
-  font-size: 1.1rem;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.optimization-tips ul {
-  list-style: none;
-  padding: 0;
-}
-
-.optimization-tips li {
-  color: var(--text-secondary);
-  margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.optimization-tips li::before {
-  content: "•";
-  color: rgb(134, 81, 231);
-  position: absolute;
-  left: 0;
-}
-
+/* Calculate Button Styles */
 .calculate-button {
   background: linear-gradient(120deg, 
     rgba(134, 81, 231, 0.8), 
@@ -1036,21 +925,6 @@ onUnmounted(() => {
   font-family: "Poppins", sans-serif;
 }
 
-.calculate-button{
-    background: linear-gradient(120deg, 
-        rgba(134, 81, 231, 0.8), 
-        rgba(76, 42, 165, 0.8)
-    );
-    color: white;
-    border: none;
-    padding: 1rem;
-    border-radius: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: auto;
-}
-
 .calculate-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(134, 81, 231, 0.2);
@@ -1061,29 +935,21 @@ onUnmounted(() => {
   cursor: not-allowed;
 }
 
-.calculating-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  gap: 1rem;
+/* Map Marker Styles */
+.user-location-marker {
+  width: 20px;
+  height: 20px;
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(134, 81, 231, 0.1);
-  border-left-color: rgb(134, 81, 231);
+.user-marker-inner {
+  width: 20px;
+  height: 20px;
+  background: rgb(134, 81, 231);
+  border: 3px solid white;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  box-shadow: 0 0 0 2px rgb(134, 81, 231);
 }
 
-.calculating-state p {
-  color: var(--text-secondary);
-}
-
-/* Estilos para los marcadores del mapa */
 .marker-icon {
   background: none;
   border: none;
@@ -1101,6 +967,12 @@ onUnmounted(() => {
   font-size: 12px;
   font-weight: 600;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.marker-number:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .marker-icon.start .marker-number {
@@ -1117,121 +989,25 @@ onUnmounted(() => {
   font-size: 14px;
 }
 
-/* Animaciones */
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Loading and Error States */
+.spinner-small {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-left-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-/* Estilos responsivos */
-@media (max-width: 1024px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-
-  .map-container {
-    height: 400px;
-  }
-
-  .metrics-panel {
-    height: auto;
-  }
-
-  .metrics-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .metric-card.total {
-    grid-column: span 2;
-  }
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(134, 81, 231, 0.1);
+  border-left-color: rgb(134, 81, 231);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-@media (max-width: 768px) {
-  .route-optimization {
-    padding: 1rem;
-  }
-
-  .metrics-container {
-    grid-template-columns: 1fr;
-  }
-
-  .metric-card.total {
-    grid-column: span 1;
-  }
-
-  .optimization-tips {
-    padding: 1rem;
-  }
-}
-
-/* Estilos para el tooltip del mapa */
-.leaflet-tooltip {
-  background: var(--bg-secondary);
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  color: var(--text-primary);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.leaflet-tooltip::before {
-  border-top-color: var(--bg-secondary);
-}
-
-/* Personalización de controles del mapa */
-.leaflet-control-zoom {
-  border: none !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-}
-
-.leaflet-control-zoom a {
-  background: var(--bg-secondary) !important;
-  color: var(--text-primary) !important;
-  border: none !important;
-}
-
-.leaflet-control-zoom a:hover {
-  background: var(--bg-primary) !important;
-}
-
-/* Estilos para la línea de ruta */
-.leaflet-interactive {
-  transition: all 0.3s ease;
-}
-
-.leaflet-interactive:hover {
-  opacity: 1 !important;
-  stroke-width: 6px !important;
-}
-
-/* Efectos de hover para los marcadores */
-.marker-number {
-  transition: all 0.3s ease;
-}
-
-.marker-number:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Animación para las métricas cuando se actualizan */
-.metric-value {
-  animation: fadeInUp 0.5s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Estilos para estados de carga y error */
 .loading-overlay {
   position: absolute;
   inset: 0;
@@ -1267,27 +1043,126 @@ onUnmounted(() => {
   transform: translateY(-2px);
 }
 
-/* Estilos para las sugerencias de optimización cuando están activas */
-.optimization-tips li.active {
+/* Map Customization */
+.leaflet-tooltip {
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
   color: var(--text-primary);
-  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.optimization-tips li.active::before {
-  content: "✓";
-  color: #4CAF50;
+.leaflet-tooltip::before {
+  border-top-color: var(--bg-secondary);
 }
 
-/* Estilos para la animación de la ruta */
-.route-animation {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawRoute 2s ease forwards;
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.leaflet-control-zoom a {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--bg-primary) !important;
+}
+
+.leaflet-interactive {
+  transition: all 0.3s ease;
+}
+
+.leaflet-interactive:hover {
+  opacity: 1 !important;
+  stroke-width: 6px !important;
+}
+
+/* Animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes drawRoute {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1400px) {
+  .metrics-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .metric-card.total {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-width: 100%;
+  }
+  
+  .map-container {
+    height: 400px;
+    order: -1;
+  }
+  
+  .selection-panel {
+    order: -1;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .metrics-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .metric-card.total {
+    grid-column: span 2;
+  }
+
+  .search-input,
+  .search-results {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .route-optimization {
+    padding: 1rem;
+  }
+
+  .metrics-container {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card.total {
+    grid-column: span 1;
+  }
+
+  .selection-panel {
+    padding: 1rem;
   }
 }
 </style>
