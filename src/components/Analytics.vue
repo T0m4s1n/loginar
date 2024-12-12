@@ -1130,7 +1130,7 @@ onUnmounted(() => {
   .selection-panel {
     order: -1;
     max-width: 100%;
-    max-height:75vh;
+    max-height:50vh;
     overflow-x: hidden;
   }
   
