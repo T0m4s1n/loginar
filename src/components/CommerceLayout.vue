@@ -497,6 +497,10 @@ onMounted(() => {
     transition: transform 0.3s ease;
   }
 
+  .commerce-info{
+    margin-top:6.5rem;
+  }
+
   .sidebar.sidebar-open {
     transform: translateX(0);
   }
