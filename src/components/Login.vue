@@ -233,7 +233,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     background: transparent;
     padding: 1rem;
     perspective: 1000px;
