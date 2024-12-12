@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+#app {
+  margin: 0 auto;
+  min-height: 100vh;
+  font-family: "Poppins", serif;
+  background: var(--bg-primary);
+  position: relative;
+}
+
+#app::before {
+  --size: 45px;
+  --line-light: color-mix(in lch, black, transparent 70%);
+  --line-dark: color-mix(in lch, white, transparent 70%);
+  content: '';
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background: linear-gradient(
+        90deg,
+        var(--line) 1px,
+        transparent 1px var(--size)
+      )
+      50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+      var(--size) var(--size);
+  mask: linear-gradient(-20deg, transparent 50%, white);
+  top: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.1s ease;
+}
+
+:root {
+  --bg-primary: #ecebfc;
+  --bg-secondary: #f5f4fe;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --border-color: #e5e7eb;
+  --accent-color: #3b82f6;
+  --line: color-mix(in lch, black, transparent 70%);
+}
+
+:root.dark {
+  --bg-primary: #2b195c;
+  --bg-secondary: #a597ee;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+  --accent-color: #60a5fa;
+  --line: color-mix(in lch, white, transparent 70%);
+}
+
+html {
+  transition: 
+    background-color 0.1s ease, 
+    color 0.1s ease,
+    background 0.1s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.theme-bg-primary { background-color: var(--bg-primary); }
+.theme-bg-secondary { background-color: var(--bg-secondary); }
+.theme-text-primary { color: var(--text-primary); }
+.theme-text-secondary { color: var(--text-secondary); }
+.theme-border { border-color: var(--border-color); }
+.theme-accent { color: var(--accent-color); }
