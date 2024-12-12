@@ -155,7 +155,7 @@ export default defineComponent({
                 </div>
 
                 <div class="input-group">
-                    <label for="input__name">Nombre</label>
+                    <label for="input__name">Nombre Completo</label>
                     <div class="input-wrapper">
                         <User class="input-icon" :size="18" />
                         <input 
@@ -171,7 +171,7 @@ export default defineComponent({
                 </div>
 
                 <div class="input-group">
-                    <label for="input__profession">Area</label>
+                    <label for="input__profession">Area Laboral</label>
                     <div class="input-wrapper">
                         <Briefcase class="input-icon" :size="18" />
                         <input 
