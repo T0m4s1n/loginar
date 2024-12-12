@@ -16,7 +16,7 @@ const features = ref([
 
 const stats = ref([
   {
-    value: '99.9%',
+    value: '99.98%',
     label: 'optima'
   },
   {
