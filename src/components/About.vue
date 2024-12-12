@@ -577,7 +577,6 @@ const cards = ref<CardData[]>([
   }
 
   .about-visual {
-    width: 100%;
     padding: 2rem;
   }
 
