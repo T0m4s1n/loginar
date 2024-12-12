@@ -34,6 +34,19 @@ interface CardData {
   skills: Skill[];
   socialLinks: SocialLink[];
 }
+interface QRImageData {
+  imageUrl: string;
+  title: string;
+  description: string;
+}
+
+const qrImages = ref<QRImageData[]>([
+  {
+    imageUrl: new URL('../assets/qr-code.png', import.meta.url).href,
+    title: 'Escanea mi QR',
+    description: 'Conecta conmigo escaneando este código'
+  }
+]);
 
 const cards = ref<CardData[]>([
   {
@@ -97,6 +110,19 @@ const cards = ref<CardData[]>([
 </script>
 <template>
   <div class="container">
+      <div class="qr-container">
+      <div class="qr-wrapper" v-for="(qr, index) in qrImages" :key="index">
+        <div class="qr-content">
+          <div class="qr-text">
+            <h2>{{ qr.title }}</h2>
+            <p>{{ qr.description }}</p>
+          </div>
+          <div class="qr-code">
+            <img :src="qr.imageUrl" :alt="qr.title" class="qr-image">
+          </div>
+        </div>
+      </div>
+    </div>
     <AiComponent />
     <div class="about-container" v-for="(card, index) in cards" :key="index">
       <div class="about-wrapper">
@@ -165,7 +191,110 @@ const cards = ref<CardData[]>([
   padding: 1rem;
   z-index: 1001;
 }
+.qr-container {
+  margin-top: 6rem;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
 
+.qr-wrapper {
+  max-width: 600px;
+  width: 100%;
+}
+
+.qr-content {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+              0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.qr-text {
+  text-align: center;
+}
+
+.qr-text h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.qr-text p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.qr-code {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.qr-image {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.qr-code:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .qr-container {
+    margin-top: 4rem;
+  }
+
+  .qr-content {
+    padding: 1.5rem;
+  }
+
+  .qr-text h2 {
+    font-size: 1.75rem;
+  }
+
+  .qr-text p {
+    font-size: 1rem;
+  }
+
+  .qr-code {
+    padding: 1.5rem;
+  }
+
+  .qr-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .qr-container {
+    margin-top: 3rem;
+  }
+
+  .qr-wrapper {
+    padding: 0.5rem;
+  }
+
+  .qr-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .qr-image {
+    width: 200px;
+    height: 200px;
+  }
+}
 .about-wrapper {
   max-width: 1200px;
   width: 100%;
@@ -243,6 +372,94 @@ const cards = ref<CardData[]>([
 .skill-details {
   flex-grow: 1;
   min-width: 0;
+}
+.qr-container {
+  margin-top: 6rem;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.qr-wrapper {
+  max-width: 600px;
+  width: 100%;
+}
+
+.qr-content {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+              0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.qr-text {
+  text-align: center;
+}
+
+.qr-text h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.qr-text p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.qr-code {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.qr-code:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .qr-container {
+    margin-top: 4rem;
+  }
+
+  .qr-content {
+    padding: 1.5rem;
+  }
+
+  .qr-text h2 {
+    font-size: 1.75rem;
+  }
+
+  .qr-text p {
+    font-size: 1rem;
+  }
+
+  .qr-code {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .qr-container {
+    margin-top: 3rem;
+  }
+
+  .qr-wrapper {
+    padding: 0.5rem;
+  }
+
+  .qr-text h2 {
+    font-size: 1.5rem;
+  }
 }
 
 .skill-name {
