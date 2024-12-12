@@ -225,7 +225,7 @@ const formatBusinessType = (type: string) => {
               </div>
 
               <div class="input-group">
-                <label>URL del Logo</label>
+                <label>URL del Logo(Opcional)</label>
                 <div class="input-wrapper">
                   <i class="fas fa-image input-icon"></i>
                   <input
