@@ -21,7 +21,7 @@ const stats = ref([
   },
   {
     value: '100+',
-    label: 'Objetos procesados'
+    label: 'Productos procesados'
   },
   {
     value: '2',
